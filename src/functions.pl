@@ -666,6 +666,7 @@ sub initMapChangeVars {
 	undef $repairList;
 	undef $devotionList;
 	undef $cookingList;
+	undef $skillExchangeItem;
 	$captcha_state = 0;
 
 	$itemsList->clear();
