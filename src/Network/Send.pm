@@ -31,7 +31,7 @@ use Carp::Assert;
 use Digest::MD5;
 use Math::BigInt;
 
-use Globals qw(%config $encryptVal $bytesSent $conState %packetDescriptions $enc_val1 $enc_val2 $char $masterServer $syncSync $accountID %timeout %talk);
+use Globals qw(%config $encryptVal $bytesSent $conState %packetDescriptions $enc_val1 $enc_val2 $char $masterServer $syncSync $accountID %timeout %talk $skillExchangeItem);
 use I18N qw(bytesToString stringToBytes);
 use Utils qw(existsInList getHex getTickCount getCoordString makeCoordsDir);
 use Misc;
@@ -1219,6 +1219,45 @@ sub sendProduceMix {
 	my $msg = pack('v5', 0x018E, $ID, $item1, $item2, $item3);
 	$self->sendToServer($msg);
 	debug "Sent Forge, Produce Item: $ID\n" , 2;
+}
+
+##
+# sendItemListWindowSelected
+# @param num Number of items
+# @param type 0: Change Material
+#             1: Elemental Analysis (Level 1: Pure to Rough)
+#             2: Elemental Analysis (Level 1: Rough to Pure)
+# @param act 0: Cancel
+#            1: Process
+# @param items List of items [itemIndex,amount,itemName]
+# @author [Cydh]
+##
+sub sendItemListWindowSelected {
+	my ($self, $num, $type, $act, $items) = @_;
+	my $len = ($num * 4) + 12;
+	$self->sendToServer($self->reconstruct({
+		switch => 'item_list_window_selected',
+		len => $len,
+		type => $type,
+		act => $act,
+		items => $items,
+	}));
+	if ($act == 1) {
+		debug "Sent item list window selected: ".(join ', ', map {"$_->{itemIndex} x $_->{amount}"} @$items)."\n", "sendPacket";
+	} else {
+		debug "Sent item list window selected canceled.\n", "sendPacket";
+	}
+	undef $skillExchangeItem;
+}
+
+sub parse_item_list_window_selected {
+	my ($self, $args) = @_;
+	@{$args->{items}} = map {{ itemIndex => unpack('v', $_), amount => unpack('v', $_) }} unpack '(a4)*', $args->{itemInfo};
+}
+
+sub reconstruct_item_list_window_selected {
+	my ($self, $args) = @_;
+	$args->{itemInfo} = pack '(a4)*', map { pack 'v2', @{$_}{qw(itemIndex amount)} } @{$args->{items}};
 }
 
 1;
