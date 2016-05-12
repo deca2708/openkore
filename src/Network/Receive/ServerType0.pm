@@ -7380,8 +7380,13 @@ sub skill_post_delaylist {
 
 sub msg_string {
 	my ($self, $args) = @_;
-	message TF("index: %s para1: %s\n", $args->{index}, $args->{para1}), "info";
-	#		'07E2' => ['msg_string', 'v V', [qw(index para1)]], #TODO PACKET_ZC_MSG_VALUE        **msgtable
+
+	if ($msgTable[++$args->{index}]) { # show message from msgstringtable.txt -> <Some message that has %d as para1>
+		my $msg = sprintf($msgTable[$args->{index}], $args->{para1});
+		message "$msg\n", "info";
+	} else {
+		warning TF("Unknown msg_string index:%d para1:%d. Need to update the file msgstringtable.txt (from data.grf)\n", $args->{index}, $args->{para1});
+	}
 }
 
 sub skill_msg {
