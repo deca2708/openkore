@@ -133,6 +133,8 @@ sub new {
 		'08C9' => ['request_cashitems'],#2
 		'08D4' => ['char_move_slot','v3', [qw(fromSlot toSlot movesCount)]],
 		'08FC' => ['char_rename', 'a4 a24', [qw(charID newName)]],
+		'096E' => ['merge_item_request', 'v a*', [qw(length itemList)]], #-1
+		'0974' => ['merge_item_cancel'], #2
 		'0987' => ['master_login', 'V Z24 a32 C', [qw(version username password_md5_hex master_version)]],
 		'0998' => ['send_equip', 'v V', [qw(index type)]],#8
 		'09A1' => ['sync_received_characters'],

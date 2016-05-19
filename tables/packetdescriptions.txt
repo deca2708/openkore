@@ -229,6 +229,8 @@
 08D5 Char Move Slot Reply
 08E3 Char Renamed
 08FD Char Rename Result
+096D Merge Item Open
+096F Merge Item Result
 
 [Send]
 0064 Account Server Login
@@ -344,3 +346,5 @@
 0829 Char Delete Accept
 098F Char Delete Accept
 082B Char Delete Cancel
+096E Merge Item Request
+0974 Merge Item Cancel

@@ -660,6 +660,7 @@ sub initMapChangeVars {
 	undef $devotionList;
 	undef $cookingList;
 	undef $skillExchangeItem;
+	undef @mergeItemList;
 	$captcha_state = 0;
 
 	$itemsList->clear();
