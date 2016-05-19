@@ -225,6 +225,9 @@
 020E TaeKwon Misson
 0238 PK Top 10 Ranking
 02AE Initialize Message ID Encryption
+08D5 Char Move Slot Reply
+08E3 Char Renamed
+08FD Char Rename Result
 
 [Send]
 0064 Account Server Login
@@ -333,3 +336,5 @@
 0228 gameguard_sync
 020D Homunculus Feed
 02AF Message ID Encryption Initialized
+08D4 Char Move Slot
+08FC Char Rename
