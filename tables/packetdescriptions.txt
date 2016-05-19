@@ -340,3 +340,7 @@
 07E4 Item List Window Selected
 08D4 Char Move Slot
 08FC Char Rename
+0827 Char Delete
+0829 Char Delete Accept
+098F Char Delete Accept
+082B Char Delete Cancel
