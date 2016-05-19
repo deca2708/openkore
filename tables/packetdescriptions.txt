@@ -225,6 +225,7 @@
 020E TaeKwon Misson
 0238 PK Top 10 Ranking
 02AE Initialize Message ID Encryption
+07E3 Skill Exchange Item
 
 [Send]
 0064 Account Server Login
@@ -333,3 +334,4 @@
 0228 gameguard_sync
 020D Homunculus Feed
 02AF Message ID Encryption Initialized
+07E4 Item List Window Selected
