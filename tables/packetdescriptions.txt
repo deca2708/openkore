@@ -225,6 +225,8 @@
 020E TaeKwon Misson
 0238 PK Top 10 Ranking
 02AE Initialize Message ID Encryption
+096D Merge Item Open
+096F Merge Item Result
 
 [Send]
 0064 Account Server Login
@@ -333,3 +335,5 @@
 0228 gameguard_sync
 020D Homunculus Feed
 02AF Message ID Encryption Initialized
+096E Merge Item Request
+0974 Merge Item Cancel
