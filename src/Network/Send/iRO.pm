@@ -80,3 +80,5 @@ sub sendSellComplete {
 	$messageSender->sendToServer(pack 'C*', 0xD4, 0x09);
 	$self->{sell_mode} = 0;
 }
+
+1;
