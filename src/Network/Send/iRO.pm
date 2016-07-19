@@ -52,20 +52,6 @@ sub new {
 	return $self;
 }
 
-sub reconstruct_char_delete2_accept {
-	my ($self, $args) = @_;
-	# length = [packet:2] + [length:2] + [charid:4] + [code_length]
-	$args->{length} = 8 + length($args->{code});
-	debug "Sent sendCharDelete2Accept. CharID: $args->{CharID}, Code: $args->{code}, Length: $args->{length}\n", "sendPacket", 2;
-}
-
-#sub sendCharDelete {
-#	my ($self, $charID, $email) = @_;
-#	my $msg = pack("C*", 0xFB, 0x01) .
-#			$charID . pack("a50", stringToBytes($email));
-#	$self->sendToServer($msg);
-#}
-
 sub sendMove {
 	my $self = shift;
 
@@ -80,5 +66,19 @@ sub sendSellComplete {
 	$messageSender->sendToServer(pack 'C*', 0xD4, 0x09);
 	$self->{sell_mode} = 0;
 }
+
+sub reconstruct_char_delete2_accept {
+	my ($self, $args) = @_;
+	# length = [packet:2] + [length:2] + [charid:4] + [code_length]
+	$args->{length} = 8 + length($args->{code});
+	debug "Sent sendCharDelete2Accept. CharID: $args->{CharID}, Code: $args->{code}, Length: $args->{length}\n", "sendPacket", 2;
+}
+
+#sub sendCharDelete {
+#	my ($self, $charID, $email) = @_;
+#	my $msg = pack("C*", 0xFB, 0x01) .
+#			$charID . pack("a50", stringToBytes($email));
+#	$self->sendToServer($msg);
+#}
 
 1;
