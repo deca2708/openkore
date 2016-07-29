@@ -6772,3 +6772,8 @@
 20240#C_Gift_Of_Snow#
 20285#C_Blossom_Fluttering#
 20312#C_Baron_Evil_Eye#
+
+//--------------- Update July Lucky Scroll 20160726---------------
+19116#Red Baby Dragon#
+22103#Excelion Leg#
+14805#Almighty Lucky Egg#
