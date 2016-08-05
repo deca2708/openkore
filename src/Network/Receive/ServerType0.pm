@@ -544,6 +544,7 @@ sub new {
 		'097A' => ['quest_all_list2', 'v3 a*', [qw(len count unknown message)]],
 		'097B' => ['rates_info2', 's V3 a*', [qw(len exp death drop detail)]],
 		'097D' => ['top10', 'v a*', [qw(type message)]],
+		'097E' => ['rank_points', 'vV2', [qw(type points total)]],
 		'0990' => ['inventory_item_added', 'v3 C3 a8 V C2 a4 v', [qw(index amount nameID identified broken upgrade cards type_equip type fail expire unknown)]],
 		'0991' => ['inventory_items_stackable', 'v a*', [qw(len itemInfo)]],
 		'0992' => ['inventory_items_nonstackable', 'v a*', [qw(len itemInfo)]],
@@ -563,6 +564,7 @@ sub new {
 		'09CF' => ['gameguard_request'],
 		'0A27' => ['hp_sp_changed', 'v2', [qw(type amount)]],
 		'0A34' => ['senbei_amount', 'V', [qw(amount)]], #new senbei system (new cash currency)
+		'0A3B' => ['hat_effect', 'v a4 C a*', [qw(len ID flag effect)]], # -1
 		'C350' => ['senbei_vender_items_list'], #new senbei vender, need research
 	};
 
@@ -4532,6 +4534,15 @@ sub refine_result {
 	} else {
 		message TF("You tried to refine a weapon (ID %s); result: unknown %s\n", $args->{nameID}, $args->{fail});
 	}
+}
+
+sub rank_points {
+	my ( $self, $args ) = @_;
+
+	$self->blacksmith_points( $args ) if $args->{type} == 0;
+	$self->alchemist_point( $args )   if $args->{type} == 1;
+	$self->taekwon_rank( { rank => $args->{total} } ) if $args->{type} == 2;
+	message "Unknown rank type %s.\n", $args->{type} if $args->{type} > 2;
 }
 
 sub blacksmith_points {

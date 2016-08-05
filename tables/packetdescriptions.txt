@@ -231,6 +231,7 @@
 08FD Char Rename Result
 096D Merge Item Open
 096F Merge Item Result
+0A3B Hat Effect Info
 
 [Send]
 0064 Account Server Login
